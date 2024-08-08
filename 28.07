@@ -1,0 +1,64 @@
+using System;
+using System.Security.Cryptography.X509Certificates;
+
+class HW
+{
+    class Point : ICloneable, IComparable<Point>
+    {
+        public double x {  get; set; }
+        public double y { get; set; }
+
+        public Point(double x, double y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+        public object Clone()
+        {
+            return new Point { x = this.x, y = this.y };
+        }
+
+        public int CompareTo(Point other)
+        {
+            double thisLength = Math.Sqrt(x * x + y * y);
+            double otherLength = Math.Sqrt(other.x * other.x + other.y * other.y);
+            return thisLength.CompareTo(otherLength);
+        }
+    }
+
+    public class Polygon : IEnumerable<Point>
+    {
+        private List<Point> точки = new List<Point>();
+
+        public Point this[int index]
+        {
+            get { return точки[index]; }
+            set { точки[index] = value; }
+        }
+
+        // Реализация интерфейса IEnumerable для перебора точек многоугольника
+        public IEnumerator<Point> GetEnumerator()
+        {
+            return Point.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Sort_points()
+        {
+            Point.Sort(new Sort_points());
+        }
+    }
+    public interface ICloneable
+    {
+        object Clone();
+    }
+
+    static void Main()
+    {
+       
+    }
+}
